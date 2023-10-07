@@ -18,3 +18,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+div {
+  display: block;
+}
+
+.nav-item {
+  list-style: none;
+}

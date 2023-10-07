@@ -1,1 +1,49 @@
-<h1>Books</h1>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-3 mr-4">
+      <h2>User info</h2>
+      <table class="table">
+        <tr>
+          <th class="p-2">name</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th class="p-2 ">introduction</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </table>
+      
+      <%= link_to edit_user_path do %>
+        <button type="button" class="btn btn-outline-secondary btn-block mt-3">
+          <i class="fa-solid fa-user-gear"></i>
+        </button>
+      <% end %>
+    </div>
+    
+    <div class="col-8 ml-5">
+      <h2>Books</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td></td>
+            <td>
+            <%= link_to edit_book_path do %>
+              <%= book.title %>
+            <% end %>
+            </td>
+            <td><%= book.body %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

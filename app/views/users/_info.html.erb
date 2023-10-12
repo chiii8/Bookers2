@@ -1,17 +1,16 @@
-<table class="table">
-  <tr><%= image_tag user.get_profile_image(100,100) %></tr>
-  <tr>
-    <th class="p-2">name</th>
-    <td><%= user.name %></td>
-  </tr>
-  <tr>
-    <th class="p-2 ">introduction</th>
-    <td><%= user.introduction %></td>
+<h2>User info</h2>
+  <%= image_tag user.get_profile_image(100,100) %>
+  <table class="table">
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong><%= user.name %></strong></td>
     </tr>
-</table>
-      
-<%= link_to edit_user_path(user) do %>
-  <button type="button" class="btn btn-outline-secondary btn-block mt-4">
+    <tr>
+      <td><strong>introduction</strong></td>
+      <td><strong><%= user.introduction %></strong></td>
+    </tr>
+  </table>
+  
+  <%= link_to edit_user_path(user.id), class:"btn btn-block btn-outline-secondary mt-4" do %>
     <i class="fa-solid fa-user-gear"></i>
-  </button>
-<% end %>
+  <% end %>

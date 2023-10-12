@@ -1,26 +1,28 @@
 class UsersController < ApplicationController
  before_action :is_matching_login_user, only: [:edit, :update] 
   
-  
   def new
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to  user_path(current_user.id)
-    else
-      render "users/sign_up"
-    end
+    @user = User.new
   end
   
   def index
-    @users =User.all
+    @users = User.all
     @book = Book.new
     @user = current_user
+  end
+  
+  def create
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    @book.save
+    flash[:notice] = "You have created book successfully."
+    redirect_to book_path(@book.id)
   end
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
     @book = Book.new
+    @books = @user.books
   end
 
   def edit
@@ -40,6 +42,10 @@ class UsersController < ApplicationController
   private
     def user_params
      params.require(:user).permit(:name, :introduction, :profile_image)
+    end
+    
+    def book_params
+    params.require(:book).permit(:title, :body)
     end
     
     def is_matching_login_user

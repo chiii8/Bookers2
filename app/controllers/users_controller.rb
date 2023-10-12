@@ -23,9 +23,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
-    if @book_user != current_user
-      redirect_to user_path(current_user)
-    end
   end
 
   def edit
@@ -47,14 +44,10 @@ class UsersController < ApplicationController
      params.require(:user).permit(:name, :introduction, :profile_image)
     end
     
-    def book_params
-    params.require(:book).permit(:title, :body)
-    end
-    
     def is_matching_login_user
       user = User.find(params[:id])
       unless user.id == current_user.id
-        redirect_to books_path
+        redirect_to user_path(current_user)
       end
     end
 end
